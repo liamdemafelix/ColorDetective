@@ -28,8 +28,15 @@
 
     Public Function SaveFile()
         SaveFileDialog1.ShowDialog()
+        Dim Contents As String = ""
         If SaveFileDialog1.FileName <> "" Then
-            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, RichTextBox1.Text, False)
+            For Each item As String In ListBox1.Items
+                Contents = Contents + item + "|"
+            Next
+            Dim LengthFile As Integer = Contents.Length
+            Contents = Replace(StrReverse(Contents), "|", "", 1, 1)
+            Contents = StrReverse(Contents)
+            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, Contents, False)
             MsgBox("Color history saved.", MsgBoxStyle.Information, "Success")
         End If
         Exit Function
@@ -37,13 +44,13 @@
 
     Private Sub MainWindow_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If e.KeyChar = Chr(13) Then
-            RichTextBox1.AppendText(TextBox1.Text & "|")
             ListBox1.Items.Add(TextBox1.Text)
             ListBox1.SelectedIndex = 0
         End If
     End Sub
 
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        BgTimer.Start()
         Dim FileNameCDB As String = TimeOfDay()
         ColorTimer.Start()
     End Sub
@@ -70,12 +77,17 @@
 
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+    Private Sub ListBox1_Click(sender As Object, e As EventArgs) Handles ListBox1.Click
         Dim ColorNameFriend As String = ListBox1.SelectedItem
         Dim ColorReal As Color
         ColorReal = System.Drawing.ColorTranslator.FromHtml(ColorNameFriend)
         PictureBox1.BackColor = ColorReal
-        My.Computer.Clipboard.SetText(ColorNameFriend)
+        If ColorNameFriend <> "" Then
+            My.Computer.Clipboard.SetText(ColorNameFriend)
+        End If
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
     End Sub
 
     Private Sub ListBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles ListBox1.MouseClick
@@ -113,4 +125,18 @@
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         About.Show()
     End Sub
+
+    Private Sub DeleteItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteItemToolStripMenuItem.Click
+        ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
+    End Sub
+
+    Private Sub BgTimer_Tick(sender As Object, e As EventArgs) Handles BgTimer.Tick
+        ' Enable/Disable the Delete Context Menu Item
+        If ListBox1.SelectedIndex >= 0 Then
+            DeleteItemToolStripMenuItem.Enabled = True
+        Else
+            DeleteItemToolStripMenuItem.Enabled = False
+        End If
+    End Sub
+
 End Class

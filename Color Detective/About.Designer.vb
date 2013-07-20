@@ -31,6 +31,7 @@ Partial Class About
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,7 +61,7 @@ Partial Class About
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(99, 15)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Version 1.0 Stable"
+        Me.Label2.Text = "Version 1.1 Stable"
         '
         'Label3
         '
@@ -88,14 +89,14 @@ Partial Class About
         Me.RichTextBox1.Location = New System.Drawing.Point(12, 122)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(574, 157)
+        Me.RichTextBox1.Size = New System.Drawing.Size(574, 136)
         Me.RichTextBox1.TabIndex = 5
         Me.RichTextBox1.Text = resources.GetString("RichTextBox1.Text")
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 283)
+        Me.Label4.Location = New System.Drawing.Point(9, 268)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(148, 15)
         Me.Label4.TabIndex = 6
@@ -104,18 +105,28 @@ Partial Class About
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(428, 283)
+        Me.LinkLabel2.Location = New System.Drawing.Point(428, 284)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(158, 15)
         Me.LinkLabel2.TabIndex = 7
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "https://github.com/xenLiam"
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 284)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(150, 15)
+        Me.Label5.TabIndex = 8
+        Me.Label5.Text = "Logo icon by McDo Design"
+        '
         'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(598, 307)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.RichTextBox1)
@@ -146,4 +157,5 @@ Partial Class About
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class

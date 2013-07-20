@@ -26,10 +26,18 @@ Partial Class MainWindow
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadColorDetectiveHistoryFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveHistoryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.HistoryMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SaveHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -39,15 +47,9 @@ Partial Class MainWindow
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.LoadColorDetectiveHistoryFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveHistoryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.BgTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         Me.HistoryMenu.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -71,6 +73,45 @@ Partial Class MainWindow
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'LoadColorDetectiveHistoryFileToolStripMenuItem
+        '
+        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Name = "LoadColorDetectiveHistoryFileToolStripMenuItem"
+        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Text = "Load History..."
+        '
+        'SaveHistoryToolStripMenuItem1
+        '
+        Me.SaveHistoryToolStripMenuItem1.Name = "SaveHistoryToolStripMenuItem1"
+        Me.SaveHistoryToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveHistoryToolStripMenuItem1.Size = New System.Drawing.Size(193, 22)
+        Me.SaveHistoryToolStripMenuItem1.Text = "Save History..."
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(190, 6)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.AboutToolStripMenuItem.Text = "About..."
+        '
         'ListBox1
         '
         Me.ListBox1.ContextMenuStrip = Me.HistoryMenu
@@ -83,21 +124,34 @@ Partial Class MainWindow
         '
         'HistoryMenu
         '
-        Me.HistoryMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveHistoryToolStripMenuItem, Me.LoadHistoryToolStripMenuItem})
+        Me.HistoryMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveHistoryToolStripMenuItem, Me.LoadHistoryToolStripMenuItem, Me.ToolStripSeparator2, Me.DeleteItemToolStripMenuItem})
         Me.HistoryMenu.Name = "HistoryMenu"
-        Me.HistoryMenu.Size = New System.Drawing.Size(151, 48)
+        Me.HistoryMenu.Size = New System.Drawing.Size(168, 76)
         '
         'SaveHistoryToolStripMenuItem
         '
         Me.SaveHistoryToolStripMenuItem.Name = "SaveHistoryToolStripMenuItem"
-        Me.SaveHistoryToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.SaveHistoryToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SaveHistoryToolStripMenuItem.Text = "Save History..."
         '
         'LoadHistoryToolStripMenuItem
         '
         Me.LoadHistoryToolStripMenuItem.Name = "LoadHistoryToolStripMenuItem"
-        Me.LoadHistoryToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.LoadHistoryToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.LoadHistoryToolStripMenuItem.Text = "Load History..."
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(164, 6)
+        '
+        'DeleteItemToolStripMenuItem
+        '
+        Me.DeleteItemToolStripMenuItem.Enabled = False
+        Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
+        Me.DeleteItemToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.DeleteItemToolStripMenuItem.Text = "Delete Item..."
         '
         'Label1
         '
@@ -172,60 +226,11 @@ Partial Class MainWindow
         Me.SaveFileDialog1.Filter = "Color Detective History File (*.cdb)|*.cdb"
         Me.SaveFileDialog1.Title = "Save Selection History..."
         '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(18, 237)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(100, 96)
-        Me.RichTextBox1.TabIndex = 10
-        Me.RichTextBox1.Text = ""
-        Me.RichTextBox1.Visible = False
-        Me.RichTextBox1.WordWrap = False
-        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.DefaultExt = "cdb"
         Me.OpenFileDialog1.Filter = "Color Detective History Files (*.cdb)|*.cdb"
         Me.OpenFileDialog1.Title = "Open Color History..."
-        '
-        'LoadColorDetectiveHistoryFileToolStripMenuItem
-        '
-        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Name = "LoadColorDetectiveHistoryFileToolStripMenuItem"
-        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.LoadColorDetectiveHistoryFileToolStripMenuItem.Text = "Load History..."
-        '
-        'SaveHistoryToolStripMenuItem1
-        '
-        Me.SaveHistoryToolStripMenuItem1.Name = "SaveHistoryToolStripMenuItem1"
-        Me.SaveHistoryToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveHistoryToolStripMenuItem1.Size = New System.Drawing.Size(193, 22)
-        Me.SaveHistoryToolStripMenuItem1.Text = "Save History..."
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(190, 6)
-        '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "Help"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AboutToolStripMenuItem.Text = "About..."
         '
         'PictureBox1
         '
@@ -235,12 +240,15 @@ Partial Class MainWindow
         Me.PictureBox1.TabIndex = 7
         Me.PictureBox1.TabStop = False
         '
+        'BgTimer
+        '
+        Me.BgTimer.Interval = 1
+        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(458, 350)
-        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label4)
@@ -283,7 +291,6 @@ Partial Class MainWindow
     Friend WithEvents SaveHistoryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadHistoryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents LoadColorDetectiveHistoryFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveHistoryToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
@@ -291,5 +298,8 @@ Partial Class MainWindow
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents DeleteItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BgTimer As System.Windows.Forms.Timer
 
 End Class
