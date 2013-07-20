@@ -12,7 +12,7 @@ Color Detective is a tool that allows designers and users to point at any pixel 
 
 ## Changelog
 
-**07/20/2013**
+**07/20/2013** - Version 1.1
 * Fixed bug in saving and loading files (adds an extra delimiter at the end)
 * Fixed bug in saving files (no longer needs to pass through a RichTextBox control thus saving memory usage)
 * Improved file saving algorithm
@@ -20,7 +20,7 @@ Color Detective is a tool that allows designers and users to point at any pixel 
 * Added icon credits to the About window (thanks to McDo designs)
 * Code cleanup
 
-**07/20/2013**
+**07/20/2013** - Version 1.0
 * Initial Upload
 
 ## Contributing
